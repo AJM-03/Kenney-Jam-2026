@@ -21,6 +21,5 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
-        player.DeactivateRB();
     }
 }

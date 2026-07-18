@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 103889770}
   - component: {fileID: 103889769}
   - component: {fileID: 103889768}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,15 @@ MonoBehaviour:
   rb: {fileID: 0}
   col: {fileID: 0}
   jumpForce: 4
+  minDistance: 1
   maxDistance: 5
+  rayDistance: 1.1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  stickyGroundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +543,7 @@ GameObject:
   - component: {fileID: 1072058015}
   - component: {fileID: 1072058014}
   - component: {fileID: 1072058013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +673,7 @@ GameObject:
   - component: {fileID: 1088225400}
   - component: {fileID: 1088225399}
   - component: {fileID: 1088225398}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,6 +824,8 @@ MonoBehaviour:
   numberOfDots: 30
   dotParent: {fileID: 1507999273}
   dotPrefab: {fileID: 8992065693742147346, guid: 2a61e64a9c1e0cd48a7db21a2b30627f, type: 3}
+  chargeRotate: {fileID: 1425873194}
+  chargeRotateSpeed: 10
   dotSpacing: 0.03
   minDotScale: 0.15
   maxDotScale: 0.5
@@ -976,7 +986,7 @@ GameObject:
   - component: {fileID: 1704884833}
   - component: {fileID: 1704884832}
   - component: {fileID: 1704884831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

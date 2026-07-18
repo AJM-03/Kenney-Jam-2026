@@ -9,6 +9,8 @@ public class Trajectory : MonoBehaviour
     [SerializeField] int numberOfDots;
     [SerializeField] GameObject dotParent;
     [SerializeField] GameObject dotPrefab;
+    [SerializeField] Rotate chargeRotate;
+    [SerializeField] float chargeRotateSpeed;
     [SerializeField] float dotSpacing;
     [SerializeField][Range(0.01f, 0.3f)] float minDotScale;
     [SerializeField][Range(0.3f, 1f)] float maxDotScale;
@@ -54,6 +56,12 @@ public class Trajectory : MonoBehaviour
             dots[i].position = pos;
             timeStamp += dotSpacing;
         }
+    }
+
+    public void UpdateChargeRotate(float charge, Vector2 force)
+    {
+        if (force.x > 0) charge *= -1;
+        chargeRotate.rotate = new Vector3(0, 0, charge * chargeRotateSpeed);
     }
 
     public void Show()
