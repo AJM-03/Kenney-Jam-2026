@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -25,6 +23,7 @@ public class Player : MonoBehaviour
 
     private bool isGrounded;
     private bool canJump;
+    private bool jumpedFromGround;
     private float groundDetectionTime;
     private float airtime;
     private bool isDragging = false;
@@ -55,8 +54,6 @@ public class Player : MonoBehaviour
 
 
 
-
-
     private void Update()
     {
         if (isGrounded) 
@@ -66,6 +63,11 @@ public class Player : MonoBehaviour
         {
             airtime += Time.deltaTime;
             DetectGround();
+
+            if (!jumpedFromGround)
+            {
+                transform.up = rb.velocity;
+            }
         }
 
         if (canJump)
@@ -180,10 +182,11 @@ public class Player : MonoBehaviour
         if (rb.velocity.magnitude < 0.2)
         {
             groundDetectionTime += Time.deltaTime;
-            if (groundDetectionTime >= 0.05f)
+            if (groundDetectionTime >= 0f)
             {
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, hit.point.y + standHeight, 0);
+                jumpedFromGround = true;
                 Ground(hit.transform);
             }
         }
@@ -218,6 +221,7 @@ public class Player : MonoBehaviour
                 transform.localRotation = targetRotation;
 
                 transform.position = contact.point + (standHeight * contact.normal);
+                jumpedFromGround = false;
             }
             Ground(collision.transform);
         }
