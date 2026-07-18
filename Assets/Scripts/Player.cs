@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public CircleCollider2D col;
+    [HideInInspector] public Animator anim;
 
     [SerializeField] float jumpForce = 4f;
     [SerializeField] float minDistance = 0.5f;
@@ -41,12 +42,14 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();
+        anim = GetComponent<Animator>();
     }
 
     public void Jump(Vector2 force)
     {
         rb.velocity = Vector2.zero;
         rb.AddForce(force, ForceMode2D.Impulse);
+        anim.SetBool("IsJumping", true);
     }
 
 
@@ -133,6 +136,7 @@ public class Player : MonoBehaviour
         rb.isKinematic = true;
         rb.angularVelocity = 0;
         rb.velocity = Vector2.zero;
+        anim.SetBool("IsJumping", false);
     }
 
     private void DetectGround()
