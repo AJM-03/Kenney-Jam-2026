@@ -415,6 +415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   col: {fileID: 0}
+  jumpForce: 4
+  maxDistance: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,8 +524,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 131074856}
   trajectory: {fileID: 1337516299}
-  jumpForce: 4
-  maxDistance: 5
 --- !u!1 &1072058012
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,8 +648,8 @@ Transform:
   m_GameObject: {fileID: 1072058012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7, z: 0}
-  m_LocalScale: {x: 29.01, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 6.3078, z: 0}
+  m_LocalScale: {x: 30.097876, y: 2.073947, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -778,8 +778,8 @@ Transform:
   m_GameObject: {fileID: 1088225397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7, z: 0}
-  m_LocalScale: {x: 29.01, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -6.3078, z: 0}
+  m_LocalScale: {x: 30.097876, y: 2.073947, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -845,13 +845,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1425873192}
   - component: {fileID: 1425873193}
+  - component: {fileID: 1425873194}
   m_Layer: 0
   m_Name: crosshair120
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1425873192
 Transform:
   m_ObjectHideFlags: 0
@@ -909,7 +910,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dabcc86500324aa4aa4ed9abeaa8a2a9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -919,6 +920,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1425873194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425873191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a42858938647b469f5739314d70e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotate: {x: 0, y: 0, z: 8}
 --- !u!1 &1507999273
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1507999274
 Transform:
   m_ObjectHideFlags: 0

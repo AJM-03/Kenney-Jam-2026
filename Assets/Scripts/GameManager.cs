@@ -16,67 +16,11 @@ public class GameManager : MonoBehaviour
 
     public Player player;
     public Trajectory trajectory;
-    [SerializeField] float jumpForce = 4f;
-    [SerializeField] float maxDistance = 5f;
-
-    private bool isDragging = false;
-
-    Vector2 startPoint;
-    Vector2 endPoint;
-    Vector2 direction;
-    Vector2 force;
-    float distance;
 
 
     private void Start()
     {
         cam = Camera.main;
         player.DeactivateRB();
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            isDragging = true;
-            OnDragStart();
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            isDragging = false;
-            OnDragEnd();
-        }
-
-        if (isDragging)
-        {
-            OnDrag();
-        }
-    }
-
-    private void OnDragStart()
-    {
-        player.DeactivateRB();
-        startPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-        trajectory.Show();
-    }
-
-    private void OnDrag()
-    {
-        endPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-        distance = Vector2.Distance(startPoint, endPoint);
-        if (distance > maxDistance) distance = maxDistance;
-        direction = (startPoint - endPoint).normalized;
-        force = direction * distance * jumpForce;
-
-        Debug.DrawLine(startPoint, endPoint);
-
-        trajectory.UpdateDots(player.transform.position, force);
-    }
-
-    private void OnDragEnd()
-    {
-        player.ActivateRB();
-        player.Jump(force);
-        trajectory.Hide();
     }
 }

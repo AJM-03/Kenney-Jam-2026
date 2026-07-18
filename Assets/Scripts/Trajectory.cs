@@ -43,6 +43,8 @@ public class Trajectory : MonoBehaviour
 
     public void UpdateDots(Vector3 playerPos, Vector2 forceApplied)
     {
+        dotParent.transform.position = playerPos;
+
         timeStamp = dotSpacing;
         for (int i = 0; i < numberOfDots; ++i)
         {
