@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] float minDistance = 0.5f;
     [SerializeField] float maxDistance = 5f;
     [SerializeField] float rayDistance = 1.1f;
+    [SerializeField] float standHeight = 0.67f;
+    [SerializeField] float minAirtime = 0.75f;
     [SerializeField] LayerMask groundMask;
     [SerializeField] LayerMask stickyGroundMask;
 
@@ -129,21 +131,53 @@ public class Player : MonoBehaviour
 
     private void DetectGround()
     {
-        RaycastHit hit;
+        if (airtime <= minAirtime) return;
+
+        RaycastHit2D hit;
         Debug.DrawRay(transform.position, Vector3.down, Color.red, rayDistance); // Visualize the contact point
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayDistance, groundMask))
+        hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundMask);
+        if (hit)
         {
-            groundSurface = hit.transform;
-            Debug.Log("Standing on: " + groundSurface.name);
-
-            if (rb.velocity.magnitude < 0.2)
-            {
-                groundDetectionTime += Time.deltaTime;
-                if (groundDetectionTime >= 0.5f) Ground(hit.transform);
-            }
-
-            else groundDetectionTime = 0;
+            HitGround(hit);
+            return;
         }
+
+        Debug.DrawRay(transform.position + new Vector3(-0.5f, 0, 0), Vector3.down, Color.red, rayDistance); // Visualize the contact point
+        hit = Physics2D.Raycast(transform.position + new Vector3(-0.5f, 0, 0), Vector2.down, rayDistance, groundMask);
+        if (hit)
+        {
+            HitGround(hit);
+            return;
+        }
+
+        Debug.DrawRay(transform.position + new Vector3(0.5f, 0, 0), Vector3.down, Color.red, rayDistance); // Visualize the contact point
+        hit = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0), Vector2.down, rayDistance, groundMask);
+        if (hit)
+        {
+            HitGround(hit);
+            return;
+        }
+
+
+        groundDetectionTime = 0;
+    }
+
+    private void HitGround(RaycastHit2D hit)
+    {
+        groundSurface = hit.transform;
+        Debug.Log("Standing on: " + groundSurface.name);
+
+        if (rb.velocity.magnitude < 0.2)
+        {
+            groundDetectionTime += Time.deltaTime;
+            if (groundDetectionTime >= 0.2f)
+            {
+                transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(transform.position.x, hit.point.y + standHeight, 0);
+                Ground(hit.transform);
+            }
+        }
+
         else groundDetectionTime = 0;
     }
 
@@ -165,18 +199,15 @@ public class Player : MonoBehaviour
         {
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                Debug.Log(prevNormal + " " + contact.normal);
-                if (airtime <= 1 && prevNormal == contact.normal) return;
+                if (airtime <= minAirtime && prevNormal == contact.normal) return;
                 prevNormal = contact.normal;
-
-                Debug.Log(contact.point + " " + contact.normal);
 
                 // Rotate to be standing on the surface
                 float angle = Mathf.Atan2(contact.normal.y, contact.normal.x) * Mathf.Rad2Deg;
                 Quaternion targetRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
                 transform.rotation = targetRotation;
 
-                transform.position = contact.point + (0.7f * contact.normal);
+                transform.position = contact.point + (standHeight * contact.normal);
             }
             Ground(collision.transform);
         }
