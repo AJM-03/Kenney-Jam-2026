@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
 
     private bool isGrounded;
+    private bool canJump;
     private float groundDetectionTime;
     private float airtime;
     private bool isDragging = false;
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
 
     public void Jump(Vector2 force)
     {
+        rb.velocity = Vector2.zero;
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 
@@ -54,7 +56,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (isGrounded)
+        if (isGrounded) 
+            canJump = true;
+
+        else
+        {
+            airtime += Time.deltaTime;
+            DetectGround();
+        }
+
+        if (canJump)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -71,12 +82,6 @@ public class Player : MonoBehaviour
             {
                 OnDrag();
             }
-        }
-
-        else
-        {
-            airtime += Time.deltaTime;
-            DetectGround();
         }
     }
 
@@ -112,6 +117,7 @@ public class Player : MonoBehaviour
     public void Unground()
     {
         isGrounded = false;
+        canJump = false;
         rb.isKinematic = false;
         groundSurface = null;
         transform.parent = null;
@@ -170,7 +176,7 @@ public class Player : MonoBehaviour
         if (rb.velocity.magnitude < 0.2)
         {
             groundDetectionTime += Time.deltaTime;
-            if (groundDetectionTime >= 0.2f)
+            if (groundDetectionTime >= 0.05f)
             {
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, hit.point.y + standHeight, 0);
@@ -205,7 +211,7 @@ public class Player : MonoBehaviour
                 // Rotate to be standing on the surface
                 float angle = Mathf.Atan2(contact.normal.y, contact.normal.x) * Mathf.Rad2Deg;
                 Quaternion targetRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
-                transform.rotation = targetRotation;
+                transform.localRotation = targetRotation;
 
                 transform.position = contact.point + (standHeight * contact.normal);
             }
