@@ -16,10 +16,20 @@ public class GameManager : MonoBehaviour
 
     public Player player;
     public Trajectory trajectory;
+    public ScreenTransition transition;
 
 
     private void Start()
     {
         cam = Camera.main;
+        StartCoroutine(StartTransition());
+    }
+
+
+    public IEnumerator StartTransition()
+    {
+        transition.ClosePositions();
+        yield return new WaitForSeconds(1f);
+        transition.Open();
     }
 }

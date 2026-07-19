@@ -10,7 +10,20 @@ public class PlayerDeath : MonoBehaviour
     {
         if(GameManager.Instance.player.gameObject == collision.gameObject)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(KillPlayer());
         }    
+    }
+
+    public IEnumerator KillPlayer()
+    {
+        GameManager.Instance.player.KillPlayer();
+
+        yield return new WaitForSeconds(3);
+
+        GameManager.Instance.transition.Close();
+
+        yield return new WaitForSeconds(3);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

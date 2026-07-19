@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private Vector2 direction;
     private Vector2 force;
     private float distance;
+    private bool dead;
 
 
 
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
         if (isGrounded) 
             canJump = true;
 
@@ -69,6 +71,8 @@ public class Player : MonoBehaviour
                 transform.up = rb.velocity;
             }
         }
+
+        if (dead) return;
 
         if (canJump)
         {
@@ -231,5 +235,16 @@ public class Player : MonoBehaviour
             }
             Ground(collision.transform);
         }
+    }
+
+
+    public void KillPlayer()
+    {
+        dead = true;
+        Unground();
+        jumpedFromGround = false;
+        Jump(new Vector2(0, 4));
+        GameManager.Instance.trajectory.Hide();
+        col.enabled = false;
     }
 }
