@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public CircleCollider2D col;
     [HideInInspector] public Animator anim;
+    [HideInInspector] public SpriteRenderer rend;
 
     [SerializeField] float jumpForce = 4f;
     [SerializeField] float minDistance = 0.5f;
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
+        rend = GetComponent<SpriteRenderer>();
 
         startPoint = Vector2.zero;
         GameManager.Instance.trajectory.StartPreview();
@@ -55,6 +57,12 @@ public class Player : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.AddForce(force, ForceMode2D.Impulse);
         anim.SetBool("IsJumping", true);
+
+        if (jumpedFromGround)
+        {
+            if (force.x > 0) rend.flipX = true;
+            else rend.flipX = false;
+        }
     }
 
 
