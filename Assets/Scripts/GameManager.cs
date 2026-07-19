@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Trajectory trajectory;
     public ScreenTransition transition;
+    [HideInInspector] public int currentScore;
 
 
     private void Start()

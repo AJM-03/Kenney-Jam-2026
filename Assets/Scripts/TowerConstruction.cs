@@ -9,6 +9,7 @@ public class TowerConstruction : MonoBehaviour
     [SerializeField] TowerSegment[] towerSegments;
     private GameObject[] loadedSegments = new GameObject[4];
     [SerializeField] Transform towerParent;
+    [SerializeField] float flipChance = 50;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class TowerConstruction : MonoBehaviour
         if (GameManager.Instance.player.transform.position.y > loadedSegments[2].transform.position.y)
         {
             LoadSegment();
+            GameManager.Instance.currentScore++;
         }
     }
 
@@ -34,7 +36,9 @@ public class TowerConstruction : MonoBehaviour
         for (int i = 0; i < loadedSegments.Length; i++)
             if (loadedSegments[i] != null) highestSegment = loadedSegments[i];
         if (highestSegment != null) newSegment.transform.position = new Vector3(0, highestSegment.transform.position.y + (highestSegment.GetComponent<TowerPart>().segment.segmentHeight / 2.0f) + (newSegment.GetComponent<TowerPart>().segment.segmentHeight / 2.0f), 0);
-        
+
+        if (Random.Range(0, 100) <= flipChance) newSegment.transform.localScale = new Vector3(-1, 1, 1);
+
         if (loadedSegments[0]) Destroy(loadedSegments[0]);
         loadedSegments[0] = loadedSegments[1];
         loadedSegments[1] = loadedSegments[2];
