@@ -31,5 +31,7 @@ public class GameManager : MonoBehaviour
         transition.ClosePositions();
         yield return new WaitForSeconds(1f);
         transition.Open();
+        yield return new WaitForSeconds(3f);
+        transition.DisableTransition();
     }
 }

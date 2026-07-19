@@ -36,19 +36,24 @@ public class ScreenTransition : MonoBehaviour
         right.transform.position = rightOpenPos;
     }
 
+    public void DisableTransition()
+    {
+        left.gameObject.SetActive(false);
+        right.gameObject.SetActive(false);
+    }
 
     public void Close()
     {
         OpenPositions();
-        left.DOMove(leftClosePos, closeSpeed).SetEase(closeEase);
-        right.DOMove(rightClosePos, closeSpeed).SetEase(closeEase);
+        left.DOLocalMove(leftClosePos, closeSpeed).SetEase(closeEase);
+        right.DOLocalMove(rightClosePos, closeSpeed).SetEase(closeEase);
     }
 
 
     public void Open()
     {
         ClosePositions();
-        left.DOMove(leftOpenPos, openSpeed).SetEase(openEase);
-        right.DOMove(rightOpenPos, openSpeed).SetEase(openEase);
+        left.DOLocalMove(leftOpenPos, openSpeed).SetEase(openEase);
+        right.DOLocalMove(rightOpenPos, openSpeed).SetEase(openEase);
     }
 }
