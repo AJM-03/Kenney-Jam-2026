@@ -243,6 +243,11 @@ public class Player : MonoBehaviour
                 // Rotate to be standing on the surface
                 float angle = Mathf.Atan2(contact.normal.y, contact.normal.x) * Mathf.Rad2Deg;
                 Quaternion targetRotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
+                var vec = targetRotation.eulerAngles;
+                vec.x = Mathf.Round(vec.x / 45) * 45;
+                vec.y = Mathf.Round(vec.y / 45) * 45;
+                vec.z = Mathf.Round(vec.z / 45) * 45;
+                targetRotation.eulerAngles = vec;
                 transform.localRotation = targetRotation;
 
                 transform.position = contact.point + (standHeight * contact.normal);

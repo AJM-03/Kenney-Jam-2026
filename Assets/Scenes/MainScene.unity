@@ -32188,18 +32188,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7421126952116078788, guid: 1f2e495765ac681479ef70a09a1ac12e, type: 3}
-      propertyPath: m_Radius
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7421126952116078788, guid: 1f2e495765ac681479ef70a09a1ac12e, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 8570178837728521538, guid: 1f2e495765ac681479ef70a09a1ac12e, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33289,7 +33277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5908773636714987314, guid: 1fddd418f29e5d646952031d711fa1dd, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7182761597062848344, guid: 1fddd418f29e5d646952031d711fa1dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33337,7 +33325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7506173835831602867, guid: 1fddd418f29e5d646952031d711fa1dd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
