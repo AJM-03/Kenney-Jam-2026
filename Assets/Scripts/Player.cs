@@ -88,8 +88,8 @@ public class Player : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0))
             {
-                isDragging = false;
                 OnDragEnd();
+                isDragging = false;
             }
 
             if (isDragging)
@@ -136,6 +136,7 @@ public class Player : MonoBehaviour
     private void OnDragEnd()
     {
         if (previewMode) return;
+        if (!isDragging) return;
         Unground();
         Jump(force);
         GameManager.Instance.trajectory.Hide();
