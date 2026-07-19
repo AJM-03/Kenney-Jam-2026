@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,12 @@ public class Trajectory : MonoBehaviour
     [SerializeField] float dotSpacing;
     [SerializeField][Range(0.01f, 0.3f)] float minDotScale;
     [SerializeField][Range(0.3f, 1f)] float maxDotScale;
+    public GameObject previewCursor;
+    public Sprite previewOpenSprite;
+    public Sprite previewGrabSprite;
+    public SpriteRenderer previewRend;
+    public float previewSpeed;
+    public Vector3 previewClosePosition;
 
     private Transform[] dots;
     private Vector2 pos;
@@ -72,5 +79,18 @@ public class Trajectory : MonoBehaviour
     public void Hide()
     {
         dotParent.SetActive(false);
+    }
+
+
+    public void StartPreview()
+    {
+        previewCursor.SetActive(true);
+        previewCursor.transform.DOMove(previewClosePosition, previewSpeed).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    public void EndPreview()
+    {
+        previewCursor.transform.DOKill();
+        previewCursor.SetActive(false);
     }
 }

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -32,6 +31,8 @@ public class Player : MonoBehaviour
     private Vector2 direction;
     private Vector2 force;
     private float distance;
+    private bool previewMode;
+    private float prevPreviewY;
     private bool dead;
 
 
@@ -43,6 +44,10 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
+
+        startPoint = Vector2.zero;
+        GameManager.Instance.trajectory.StartPreview();
+        previewMode = true;
     }
 
     public void Jump(Vector2 force)
@@ -92,10 +97,18 @@ public class Player : MonoBehaviour
                 OnDrag();
             }
         }
+
+        if (previewMode) PreviewMode();
     }
 
     private void OnDragStart()
     {
+        if (previewMode) 
+        {
+            GameManager.Instance.trajectory.EndPreview();
+            previewMode = false;
+        }
+
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = 10;
         startPoint = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -122,6 +135,7 @@ public class Player : MonoBehaviour
 
     private void OnDragEnd()
     {
+        if (previewMode) return;
         Unground();
         Jump(force);
         GameManager.Instance.trajectory.Hide();
@@ -246,5 +260,35 @@ public class Player : MonoBehaviour
         Jump(new Vector2(0, 4));
         GameManager.Instance.trajectory.Hide();
         col.enabled = false;
+    }
+
+
+
+
+    public void PreviewMode()
+    {
+        if (startPoint == Vector2.zero)
+        {
+            startPoint = new Vector2(3f, -5.5f);
+            endPoint = startPoint;
+            DOTween.To(() => endPoint, x => endPoint = x, new Vector2(5f, -7f), GameManager.Instance.trajectory.previewSpeed).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        }
+
+        distance = Vector2.Distance(startPoint, endPoint);
+        direction = (startPoint - endPoint).normalized;
+        force = direction * distance * jumpForce;
+        GameManager.Instance.trajectory.UpdateDots(transform.position, force);
+        GameManager.Instance.trajectory.UpdateChargeRotate(distance, force);
+
+        if (GameManager.Instance.trajectory.previewCursor.transform.position.y > prevPreviewY)
+        {
+            GameManager.Instance.trajectory.previewRend.sprite = GameManager.Instance.trajectory.previewOpenSprite;
+        }
+        else
+        {
+            GameManager.Instance.trajectory.previewRend.sprite = GameManager.Instance.trajectory.previewGrabSprite;
+            GameManager.Instance.trajectory.Show();
+        }
+        prevPreviewY = GameManager.Instance.trajectory.previewCursor.transform.position.y;
     }
 }
