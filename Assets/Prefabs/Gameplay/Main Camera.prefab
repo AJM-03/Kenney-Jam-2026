@@ -213,6 +213,10 @@ MonoBehaviour:
   moveSpeed: 0.5
   easeStrength: 75
   barrier: {fileID: 3253418440525629121}
+  cameraTransform: {fileID: 7461748889890170316}
+  shakeDuration: 0.5
+  shakeAmount: 0.7
+  decreaseFactor: 1
 --- !u!1 &712524786179276689
 GameObject:
   m_ObjectHideFlags: 0

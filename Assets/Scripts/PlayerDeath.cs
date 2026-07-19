@@ -17,6 +17,7 @@ public class PlayerDeath : MonoBehaviour
     public IEnumerator KillPlayer()
     {
         GameManager.Instance.player.KillPlayer();
+        Camera.main.GetComponent<CameraMovement>().TriggerDeathShake();
 
         yield return new WaitForSeconds(3);
 

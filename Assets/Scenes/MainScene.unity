@@ -31151,6 +31151,82 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: shakeAmount
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[1].time
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[2].value
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[2].inSlope
+      value: 0.40607154
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[0].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[2].inWeight
+      value: 0.2638522
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[2].outSlope
+      value: 0.40607154
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[2].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[0].tangentMode
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473378643190447787, guid: 0de6da2fd92e454479304debc8d24fcd, type: 3}
+      propertyPath: chargeShake.m_Curve.Array.data[2].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public CircleCollider2D col;
     [HideInInspector] public Animator anim;
     [HideInInspector] public SpriteRenderer rend;
+    [HideInInspector] public CameraMovement cam;
 
     [SerializeField] float jumpForce = 4f;
     [SerializeField] float minDistance = 0.5f;
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
         col = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
+        cam = Camera.main.GetComponent<CameraMovement>();
 
         startPoint = Vector2.zero;
         GameManager.Instance.trajectory.StartPreview();
@@ -128,7 +130,7 @@ public class Player : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = 10;
         endPoint = Camera.main.ScreenToWorldPoint(mousePosition);
-        Debug.Log(endPoint);
+        //Debug.Log(endPoint);
         distance = Vector2.Distance(startPoint, endPoint);
         if (distance < minDistance) distance = minDistance;
         if (distance > maxDistance) distance = maxDistance;
@@ -139,6 +141,8 @@ public class Player : MonoBehaviour
 
         GameManager.Instance.trajectory.UpdateDots(transform.position, force);
         GameManager.Instance.trajectory.UpdateChargeRotate(distance, force);
+        Debug.Log(distance);
+        cam.TriggerChargeShake(distance / 3);
     }
 
     private void OnDragEnd()
@@ -209,7 +213,7 @@ public class Player : MonoBehaviour
     private void HitGround(RaycastHit2D hit)
     {
         groundSurface = hit.transform;
-        Debug.Log("Standing on: " + groundSurface.name);
+        //Debug.Log("Standing on: " + groundSurface.name);
 
         if (rb.velocity.magnitude < 0.2)
         {
