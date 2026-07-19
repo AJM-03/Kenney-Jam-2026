@@ -30947,6 +30947,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ef3c53355b404944f8157319b93cd43b, type: 2}
   - {fileID: 11400000, guid: b364d64741d541443ba1b3d4694e2d49, type: 2}
   - {fileID: 11400000, guid: 1cd865b27ac90574690975251f335f59, type: 2}
+  - {fileID: 11400000, guid: 667f6731dda1a6b4fb42cbf3041d0865, type: 2}
   towerParent: {fileID: 199587430}
   flipChance: 50
   startingSection: {fileID: 1942566515}

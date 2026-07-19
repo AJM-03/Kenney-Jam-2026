@@ -40,7 +40,14 @@ public class TowerConstruction : MonoBehaviour
             if (loadedSegments[i] != null) highestSegment = loadedSegments[i];
         if (highestSegment != null) newSegment.transform.position = new Vector3(0, highestSegment.transform.position.y + (highestSegment.GetComponent<TowerPart>().segment.segmentHeight / 2.0f) + (newSegment.GetComponent<TowerPart>().segment.segmentHeight / 2.0f), 0);
 
-        if (Random.Range(0, 100) <= flipChance) newSegment.transform.localScale = new Vector3(-1, 1, 1);
+        if (Random.Range(0, 100) <= flipChance)
+        {
+            newSegment.transform.localScale = new Vector3(-1, 1, 1);
+            foreach (MovingPlatform p in newSegment.transform.GetComponentsInChildren<MovingPlatform>())
+            {
+                p.moveDirection = new Vector3(-p.moveDirection.x, 0, 0);
+            }
+        }
 
         if (loadedSegments[0]) Destroy(loadedSegments[0]);
         loadedSegments[0] = loadedSegments[1];
