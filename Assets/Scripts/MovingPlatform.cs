@@ -10,10 +10,19 @@ public class MovingPlatform : MonoBehaviour
     public float speed = 3f;
     [SerializeField] public LoopType loopType = LoopType.Yoyo;
     [SerializeField] public Ease ease = Ease.InOutSine;
+    [SerializeField] public bool local;
 
     private void Start()
     {
-        startPos = transform.position;
-        transform.DOMove(startPos + moveDirection, speed).SetLoops(-1, loopType).SetEase(ease);
+        if (!local)
+        {
+            startPos = transform.position;
+            transform.DOMove(startPos + moveDirection, speed).SetLoops(-1, loopType).SetEase(ease);
+        }
+        else
+        {
+            startPos = transform.localPosition;
+            transform.DOLocalMove(startPos + moveDirection, speed).SetLoops(-1, loopType).SetEase(ease);
+        }
     }
 }
