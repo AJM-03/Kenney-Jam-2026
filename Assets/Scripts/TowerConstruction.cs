@@ -10,10 +10,13 @@ public class TowerConstruction : MonoBehaviour
     private GameObject[] loadedSegments = new GameObject[4];
     [SerializeField] Transform towerParent;
     [SerializeField] float flipChance = 50;
+    [SerializeField] GameObject startingSection;
 
     void Start()
     {
-        for (int i = 0; i < loadedSegments.Length; i++)
+        loadedSegments[3] = startingSection;
+        startingSection.SetActive(true);
+        for (int i = 0; i < loadedSegments.Length - 1; i++)
         {
             LoadSegment();
         }
