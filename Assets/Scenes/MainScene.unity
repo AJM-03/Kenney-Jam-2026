@@ -450,7 +450,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+<<<<<<< Updated upstream
 --- !u!1 &427797511
+=======
+--- !u!1 &372423465
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -458,6 +462,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< Updated upstream
   - component: {fileID: 427797514}
   - component: {fileID: 427797513}
   - component: {fileID: 427797512}
@@ -465,17 +470,28 @@ GameObject:
   - component: {fileID: 427797516}
   m_Layer: 3
   m_Name: Moving Platform
+=======
+  - component: {fileID: 372423467}
+  - component: {fileID: 372423466}
+  m_Layer: 0
+  m_Name: Tower
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< Updated upstream
 --- !u!114 &427797512
+=======
+--- !u!114 &372423466
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 427797511}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -535,20 +551,44 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &427797514
+=======
+  m_GameObject: {fileID: 372423465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234d3592bd0394c4ba48688a2bc5d0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerSegments:
+  - {fileID: 11400000, guid: dcc211d3d3fcc3d448f6eeece116d9b8, type: 2}
+  - {fileID: 11400000, guid: ec69e5e7097bb534aa9598ad115e405f, type: 2}
+  - {fileID: 11400000, guid: 3b20c737673f3b94ca8887646576311e, type: 2}
+  - {fileID: 11400000, guid: 0fcab806b8ed1204587dbc019beac1e9, type: 2}
+  towerParent: {fileID: 372423467}
+--- !u!4 &372423467
+>>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 427797511}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.6991, y: -2.0962884, z: 0}
   m_LocalScale: {x: 2.55, y: 0.20840622, z: 1}
+=======
+  m_GameObject: {fileID: 372423465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+>>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!61 &427797515
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -613,6 +653,8 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+=======
+>>>>>>> Stashed changes
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,7 +1981,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2051,5 +2093,9 @@ SceneRoots:
   - {fileID: 1704884833}
   - {fileID: 103889770}
   - {fileID: 1902529271}
+<<<<<<< Updated upstream
   - {fileID: 427797514}
   - {fileID: 1495945229}
+=======
+  - {fileID: 372423467}
+>>>>>>> Stashed changes

@@ -19,7 +19,7 @@ public class CameraMovement : MonoBehaviour
         if (GameManager.Instance.player.transform.position.y > transform.position.y + verticalThreshold)
         {
             transform.DOKill();
-            transform.DOMoveY(GameManager.Instance.player.transform.position.y - verticalThreshold, moveSpeed).SetEase(Ease.OutBack, easeStrength);
+            transform.DOMoveY(GameManager.Instance.player.transform.position.y - verticalThreshold, moveSpeed);
         }
     }
 }

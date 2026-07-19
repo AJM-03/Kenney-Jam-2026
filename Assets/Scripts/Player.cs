@@ -187,6 +187,7 @@ public class Player : MonoBehaviour
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, hit.point.y + standHeight, 0);
                 jumpedFromGround = true;
+                prevNormal = hit.normal;
                 Ground(hit.transform);
             }
         }
