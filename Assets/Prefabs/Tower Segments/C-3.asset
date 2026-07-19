@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b6eff752fc419b4294380010287e2d0, type: 3}
-  m_Name: C - 3
+  m_Name: C-3
   m_EditorClassIdentifier: 
   prefab: {fileID: 7125430503588740406, guid: c104c68309891364faaf1df507932bfd, type: 3}
   segmentHeight: 25

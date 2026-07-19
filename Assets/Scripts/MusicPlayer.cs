@@ -25,7 +25,7 @@ public class MusicPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetMouseButtonDown(2))
         {
             if (musicSources[0].isPlaying)
                 musicSources[0].Stop();

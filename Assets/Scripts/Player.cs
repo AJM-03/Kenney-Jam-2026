@@ -123,6 +123,12 @@ public class Player : MonoBehaviour
         }
 
         if (previewMode) PreviewMode();
+
+        if (isDragging && Input.GetMouseButtonDown(1))
+        {
+            GameManager.Instance.trajectory.Hide();
+            isDragging = false;
+        }
     }
 
     private void OnDragStart()
