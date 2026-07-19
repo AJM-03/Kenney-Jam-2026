@@ -8,10 +8,12 @@ public class MovingPlatform : MonoBehaviour
     public Vector3 moveDirection = new Vector3(3f, 0f, 0f);
     private Vector3 startPos;
     public float speed = 3f;
+    [SerializeField] public LoopType loopType = LoopType.Yoyo;
+    [SerializeField] public Ease ease = Ease.InOutSine;
 
     private void Start()
     {
         startPos = transform.position;
-        transform.DOMove(startPos + moveDirection, speed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        transform.DOMove(startPos + moveDirection, speed).SetLoops(-1, loopType).SetEase(ease);
     }
 }
