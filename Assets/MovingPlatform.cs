@@ -5,8 +5,13 @@ using DG.Tweening;
 
 public class MovingPlatform : MonoBehaviour
 {
+    public Vector3 moveDirection = new Vector3(3f, 0f, 0f);
+    private Vector3 startPos;
+    public float speed = 3f;
+
     private void Start()
     {
-        transform.DOMoveX(5.0f, 1.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        startPos = transform.position;
+        transform.DOMove(startPos + moveDirection, speed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
     }
 }

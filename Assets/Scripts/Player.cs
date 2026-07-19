@@ -92,13 +92,18 @@ public class Player : MonoBehaviour
 
     private void OnDragStart()
     {
-        startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 10;
+        startPoint = Camera.main.ScreenToWorldPoint(mousePosition);
         GameManager.Instance.trajectory.Show();
     }
 
     private void OnDrag()
     {
-        endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 10;
+        endPoint = Camera.main.ScreenToWorldPoint(mousePosition);
+        Debug.Log(endPoint);
         distance = Vector2.Distance(startPoint, endPoint);
         if (distance < minDistance) distance = minDistance;
         if (distance > maxDistance) distance = maxDistance;
