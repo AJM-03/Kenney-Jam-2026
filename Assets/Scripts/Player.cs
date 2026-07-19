@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
 
 
-    private void Awake()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();

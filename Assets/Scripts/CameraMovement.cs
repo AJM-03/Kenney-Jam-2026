@@ -8,6 +8,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] float verticalThreshold;
     [SerializeField] float moveSpeed;
     [SerializeField] float easeStrength;
+    [SerializeField] Transform barrier;
 
     void Start()
     {
@@ -21,5 +22,10 @@ public class CameraMovement : MonoBehaviour
             transform.DOKill();
             transform.DOMoveY(GameManager.Instance.player.transform.position.y - verticalThreshold, moveSpeed);
         }
+    }
+
+    public void BringUpBarrier()
+    {
+        barrier.DOLocalMove(Vector3.zero, 3);
     }
 }

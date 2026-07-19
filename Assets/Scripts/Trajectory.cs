@@ -1,8 +1,5 @@
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class Trajectory : MonoBehaviour
@@ -93,5 +90,6 @@ public class Trajectory : MonoBehaviour
     {
         previewCursor.transform.DOKill();
         previewCursor.SetActive(false);
+        Camera.main.GetComponent<CameraMovement>().BringUpBarrier();
     }
 }
