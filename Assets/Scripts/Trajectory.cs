@@ -84,6 +84,7 @@ public class Trajectory : MonoBehaviour
 
     public void StartPreview()
     {
+        if (previewCursor == null) return;
         previewCursor.SetActive(true);
         previewCursor.transform.DOLocalMove(previewClosePosition, previewSpeed).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
