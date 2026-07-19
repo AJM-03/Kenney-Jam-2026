@@ -91,5 +91,6 @@ public class Trajectory : MonoBehaviour
         previewCursor.transform.DOKill();
         previewCursor.SetActive(false);
         Camera.main.GetComponent<CameraMovement>().BringUpBarrier();
+        MusicPlayer.Instance.ChangeSongIntensity(2);
     }
 }

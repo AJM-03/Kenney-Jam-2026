@@ -18,6 +18,17 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     [SerializeField] LayerMask stickyGroundMask;
 
+
+    [SerializeField] AudioSource jumpSound;
+    [SerializeField] AnimationCurve jumpPitch;
+    [SerializeField] AudioSource deathSound;
+    [SerializeField] AudioSource deathFallSound;
+    [SerializeField] AudioSource wallHitSound;
+    [SerializeField] AudioSource bounceSound;
+    [SerializeField] AudioSource landingSound;
+    [SerializeField] AudioSource stickyLandingSound;
+
+
     private Transform groundSurface;
     private Vector2 prevNormal;
 
@@ -27,6 +38,7 @@ public class Player : MonoBehaviour
     private bool jumpedFromGround;
     private float groundDetectionTime;
     private float airtime;
+    private float wallHitTime;
     private bool isDragging = false;
     private Vector2 startPoint;
     private Vector2 endPoint;
@@ -59,6 +71,7 @@ public class Player : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.AddForce(force, ForceMode2D.Impulse);
         anim.SetBool("IsJumping", true);
+        jumpSound.Play();
 
         if (jumpedFromGround)
         {
@@ -79,6 +92,7 @@ public class Player : MonoBehaviour
         else
         {
             airtime += Time.deltaTime;
+            wallHitTime -= Time.deltaTime;
             DetectGround();
 
             if (!jumpedFromGround)
@@ -143,6 +157,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.trajectory.UpdateChargeRotate(distance, force);
         Debug.Log(distance);
         cam.TriggerChargeShake(distance / 3);
+        jumpSound.pitch = jumpPitch.Evaluate(distance / 3);
     }
 
     private void OnDragEnd()
@@ -164,6 +179,7 @@ public class Player : MonoBehaviour
         transform.parent = null;
         groundDetectionTime = 0;
         airtime = 0;
+        wallHitTime = 0;
     }
 
     public void Ground(Transform surface)
@@ -175,6 +191,7 @@ public class Player : MonoBehaviour
         rb.angularVelocity = 0;
         rb.velocity = Vector2.zero;
         anim.SetBool("IsJumping", false);
+        jumpSound.Stop();
     }
 
     private void DetectGround()
@@ -215,7 +232,7 @@ public class Player : MonoBehaviour
         groundSurface = hit.transform;
         //Debug.Log("Standing on: " + groundSurface.name);
 
-        if (rb.velocity.magnitude < 0.2)
+        if (rb.velocity.magnitude < 0.85f)
         {
             groundDetectionTime += Time.deltaTime;
             if (groundDetectionTime >= 0f)
@@ -223,6 +240,7 @@ public class Player : MonoBehaviour
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, hit.point.y + standHeight, 0);
                 jumpedFromGround = true;
+                landingSound.Play();
                 prevNormal = hit.normal;
                 Ground(hit.transform);
             }
@@ -235,6 +253,19 @@ public class Player : MonoBehaviour
     {
         if (isGrounded) return;
         CollisionCheck(collision);
+
+        if (!isGrounded && wallHitTime <= 0f && (((stickyGroundMask.value & (1 << collision.gameObject.layer)) != 0) || (groundMask.value & (1 << collision.gameObject.layer)) != 0))
+        {
+            if (collision.gameObject.tag == "Bounce")
+            {
+                bounceSound.Play();
+                airtime++;
+            }
+            else
+                wallHitSound.Play();
+
+            wallHitTime = 1;
+        }
     }
     public void OnCollisionStay2D(Collision2D collision)
     {
@@ -264,6 +295,7 @@ public class Player : MonoBehaviour
 
                 transform.position = contact.point + (standHeight * contact.normal);
                 jumpedFromGround = false;
+                stickyLandingSound.Play();
             }
             Ground(collision.transform);
         }
@@ -277,6 +309,8 @@ public class Player : MonoBehaviour
         jumpedFromGround = false;
         Jump(new Vector2(0, 4));
         GameManager.Instance.trajectory.Hide();
+        deathSound.Play();
+        deathFallSound.Play();
         col.enabled = false;
     }
 

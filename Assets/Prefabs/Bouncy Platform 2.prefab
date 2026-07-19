@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 3435135560737024999}
   m_Layer: 3
   m_Name: Bouncy Platform 2
-  m_TagString: Untagged
+  m_TagString: Bounce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

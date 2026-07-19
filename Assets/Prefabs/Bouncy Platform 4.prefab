@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 102640659092198587}
   m_Layer: 3
   m_Name: Bouncy Platform 4
-  m_TagString: Untagged
+  m_TagString: Bounce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
